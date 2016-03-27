@@ -2,7 +2,7 @@
 
 library(maps)
 library(mapproj)
-counties <- read.table("data/USDA-indemnity.txt")
+counties <- read.table("/git/crop_indemnity/data/USDA-indemnity.txt")
 
 #setwd("/git/data/USDA/pdfs/")
 #counties <- read.table("USDA-idemnity.txt")

@@ -6,8 +6,8 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      helpText("Explore areas of impact related  
-        to drought and the Pacific Northwest."),
+      helpText("Explore areas of crop loss related  
+        to the Pacific Northwest."),
     
       selectInput("var", 
         label = "Choose a variable to display",
