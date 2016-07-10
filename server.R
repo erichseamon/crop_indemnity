@@ -2,20 +2,21 @@
 
 library(maps)
 library(mapproj)
-counties <- read.table("/git/crop_indemnity/data/USDA-indemnity.txt")
+
+counties <- readRDS("/srv/shiny-server/crop-indemnity/data/counties.rds")
+source("/srv/shiny-server/crop-indemnity/helpers.R")
+
+#counties <- read.csv("/agmesh-scenarios/scenario_52177/commodity/WHEAT                              .csv")
 
 #setwd("/git/data/USDA/pdfs/")
 #counties <- read.table("USDA-idemnity.txt")
-source("helpers.R")
 
 shinyServer(
   function(input, output) {
     output$map <- renderPlot({
       data <- switch(input$var, 
-        "Crop Indemnity" = counties$X4,
-        "Percent Black" = counties$X8,
-        "Percent Hispanic" = counties$X8,
-        "Percent Asian" = counties$X8)
+        "Total Crop Loss by $" = counties$loss,
+        "Total Crop Loss by Acres" = counties$acres)
     
      color <- switch(input$var, 
         "Crop Indemnity" = "darkgreen",
@@ -28,6 +29,8 @@ shinyServer(
         "Percent Black" = "% Black",
         "Percent Hispanic" = "% Hispanic",
         "Percent Asian" = "% Asian")
+      
+
   
       percent_map(var = data, 
         color = color, 
